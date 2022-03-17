@@ -1,10 +1,8 @@
-import { Component } from 'react';
+import React from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 
 import { Container } from './styles';
-import api from '../../services/api';
-
-import React from 'react'
+// import api from '../../services/api';
 
 const Food = ({food, handleEditFood}) => {
 
@@ -34,7 +32,7 @@ const Food = ({food, handleEditFood}) => {
           <button
             type="button"
             className="icon"
-            // onClick={() => handleDelete(food.id)}
+            onClick={() => alert('Insira uma função de excluir')}
             data-testid={`remove-food-${food.id}`}
           >
             <FiTrash size={20} />

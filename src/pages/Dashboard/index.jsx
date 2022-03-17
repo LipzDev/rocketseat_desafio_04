@@ -35,7 +35,6 @@ const Dashboard = () => {
          <ModalAddFood
           isOpen={isOpen}
           setIsOpen={toggleModal}
-          // handleAddFood={handleAddFood}
         />
 
         <ModalEditFood
@@ -51,7 +50,6 @@ const Dashboard = () => {
               <Food
                 key={food.id}
                 food={food}
-                // handleDelete={handleDeleteFood}
                 handleEditFood={toggleEditModal}
               />
             ))}
@@ -79,20 +77,7 @@ export default Dashboard
 //     this.setState({ foods: response.data });
 //   }
 
-//   handleAddFood = async food => {
-//     const { foods } = this.state;
 
-//     try {
-//       const response = await api.post('/foods', {
-//         ...food,
-//         available: true,
-//       });
-
-//       this.setState({ foods: [...foods, response.data] });
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
 
 //   handleUpdateFood = async food => {
 //     const { foods, editingFood } = this.state;
