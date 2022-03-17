@@ -4,89 +4,147 @@ import { FiEdit3, FiTrash } from 'react-icons/fi';
 import { Container } from './styles';
 import api from '../../services/api';
 
-class Food extends Component {
-  constructor(props) {
-    super(props);
+import React from 'react'
 
-    const { available } = this.props.food;
-    this.state = {
-      isAvailable: available
-    };
-  }
+const Food = ({food, handleEditFood}) => {
 
-  toggleAvailable = async () => {
-    const { food } = this.props;
-    const { isAvailable } = this.state;
+  return (
+    <Container available={'isAvailable'}>
+      <header>
+        <img src={food.image} alt={food.name} />
+      </header>
+      <section className="body">
+        <h2>{food.name}</h2>
+        <p>{food.description}</p>
+        <p className="price">
+          R$ <b>{food.price}</b>
+        </p>
+      </section>
+      <section className="footer">
+        <div className="icon-container">
+          <button
+            type="button"
+            className="icon"
+            onClick={handleEditFood}
+            data-testid={`edit-food-${food.id}`}
+          >
+            <FiEdit3 size={20} />
+          </button>
 
-    await api.put(`/foods/${food.id}`, {
-      ...food,
-      available: !isAvailable,
-    });
+          <button
+            type="button"
+            className="icon"
+            // onClick={() => handleDelete(food.id)}
+            data-testid={`remove-food-${food.id}`}
+          >
+            <FiTrash size={20} />
+          </button>
+        </div>
 
-    this.setState({ isAvailable: !isAvailable });
-  }
+        <div className="availability-container">
+          {/* <p>{isAvailable ? 'Disponível' : 'Indisponível'}</p> */}
 
-  setEditingFood = () => {
-    const { food, handleEditFood } = this.props;
+          <label htmlFor={`available-switch-${food.id}`} className="switch">
+            <input
+              id={`available-switch-${food.id}`}
+              type="checkbox"
+              // checked={isAvailable}
+              // onChange={toggleAvailable}
+              data-testid={`change-status-food-${food.id}`}
+            />
+            <span className="slider" />
+          </label>
+        </div>
+      </section>
+    </Container>
+  );
+}
 
-    handleEditFood(food);
-  }
+export default Food
 
-  render() {
-    const { isAvailable } = this.state;
-    const { food, handleDelete } = this.props;
+// class Food extends Component {
+//   constructor(props) {
+//     super(props);
 
-    return (
-      <Container available={isAvailable}>
-        <header>
-          <img src={food.image} alt={food.name} />
-        </header>
-        <section className="body">
-          <h2>{food.name}</h2>
-          <p>{food.description}</p>
-          <p className="price">
-            R$ <b>{food.price}</b>
-          </p>
-        </section>
-        <section className="footer">
-          <div className="icon-container">
-            <button
-              type="button"
-              className="icon"
-              onClick={this.setEditingFood}
-              data-testid={`edit-food-${food.id}`}
-            >
-              <FiEdit3 size={20} />
-            </button>
+//     const { available } = this.props.food;
+//     this.state = {
+//       isAvailable: available
+//     };
+//   }
 
-            <button
-              type="button"
-              className="icon"
-              onClick={() => handleDelete(food.id)}
-              data-testid={`remove-food-${food.id}`}
-            >
-              <FiTrash size={20} />
-            </button>
-          </div>
+//   toggleAvailable = async () => {
+//     const { food } = this.props;
+//     const { isAvailable } = this.state;
 
-          <div className="availability-container">
-            <p>{isAvailable ? 'Disponível' : 'Indisponível'}</p>
+//     await api.put(`/foods/${food.id}`, {
+//       ...food,
+//       available: !isAvailable,
+//     });
 
-            <label htmlFor={`available-switch-${food.id}`} className="switch">
-              <input
-                id={`available-switch-${food.id}`}
-                type="checkbox"
-                checked={isAvailable}
-                onChange={this.toggleAvailable}
-                data-testid={`change-status-food-${food.id}`}
-              />
-              <span className="slider" />
-            </label>
-          </div>
-        </section>
-      </Container>
-    );
-  }
-};
+//     this.setState({ isAvailable: !isAvailable });
+//   }
 
-export default Food;
+//   setEditingFood = () => {
+//     const { food, handleEditFood } = this.props;
+
+//     handleEditFood(food);
+//   }
+
+//   render() {
+//     const { isAvailable } = this.state;
+//     const { food, handleDelete } = this.props;
+
+//     return (
+//       <Container available={isAvailable}>
+//         <header>
+//           <img src={food.image} alt={food.name} />
+//         </header>
+//         <section className="body">
+//           <h2>{food.name}</h2>
+//           <p>{food.description}</p>
+//           <p className="price">
+//             R$ <b>{food.price}</b>
+//           </p>
+//         </section>
+//         <section className="footer">
+//           <div className="icon-container">
+//             <button
+//               type="button"
+//               className="icon"
+//               onClick={this.setEditingFood}
+//               data-testid={`edit-food-${food.id}`}
+//             >
+//               <FiEdit3 size={20} />
+//             </button>
+
+//             <button
+//               type="button"
+//               className="icon"
+//               onClick={() => handleDelete(food.id)}
+//               data-testid={`remove-food-${food.id}`}
+//             >
+//               <FiTrash size={20} />
+//             </button>
+//           </div>
+
+//           <div className="availability-container">
+//             <p>{isAvailable ? 'Disponível' : 'Indisponível'}</p>
+
+//             <label htmlFor={`available-switch-${food.id}`} className="switch">
+//               <input
+//                 id={`available-switch-${food.id}`}
+//                 type="checkbox"
+//                 checked={isAvailable}
+//                 onChange={this.toggleAvailable}
+//                 data-testid={`change-status-food-${food.id}`}
+//               />
+//               <span className="slider" />
+//             </label>
+//           </div>
+//         </section>
+//       </Container>
+//     );
+//   }
+// };
+
+// export default Food;
