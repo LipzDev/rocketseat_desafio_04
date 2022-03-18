@@ -5,7 +5,7 @@ const FoodContext = createContext({});
 
 export const FoodProvider = ({children}) => {
   const [foods, setFoods] = useState([]);
-  const [foodId, setFoodId] = useState(0);
+  const [selectedFoodId, setSelectedFoodId] = useState(1);
 
   async function addFood(formContent){
     try{
@@ -34,9 +34,8 @@ export const FoodProvider = ({children}) => {
     }
   }
 
-
   return (
-    <FoodContext.Provider value={{addFood, editFood, removeFood, setFoods, foods, setFoodId, foodId}}>
+    <FoodContext.Provider value={{addFood, editFood, removeFood, setFoods, foods, setSelectedFoodId, selectedFoodId}}>
       {children}
     </FoodContext.Provider>
   )

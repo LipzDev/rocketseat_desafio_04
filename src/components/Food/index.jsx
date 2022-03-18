@@ -1,22 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect} from 'react';
+import React from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 import {useFood} from '../../hooks/useFood.jsx';
 import { Container } from './styles';
 
 const Food = ({food, openEditFoodModal}) => {
-  const {removeFood, setFoodId} = useFood();
+  const {removeFood, setSelectedFoodId} = useFood();
 
   function handleDelete(id){
     removeFood(id);
   }
 
   function handleEdit(id){
-    setFoodId(id);
+    setSelectedFoodId(id);
     openEditFoodModal();
   }
-
- 
 
   return (
     <Container available={'isAvailable'}>

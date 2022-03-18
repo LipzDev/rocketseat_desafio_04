@@ -1,25 +1,18 @@
 {
   "foods": [
     {
-      "image": "https://media-cdn.tripadvisor.com/media/photo-s/06/57/06/f3/el-foso.jpg",
-      "name": "a1",
-      "price": "",
-      "description": "",
+      "image": "http://www.restaurantefrutosdaterra.com.br/wp-content/uploads/2017/06/Comida-italiana-e%CC%81-rica-em-sabor-e-na%CC%83o-atrapalha-a-sua-dieta-restaurante-frutos-da-terra.jpg",
+      "name": "Spaguetti",
+      "price": "19.99",
+      "description": "Prato feito",
       "id": 1
     },
     {
-      "image": "https://super.abril.com.br/wp-content/uploads/2018/07/farofa-formiga-site.jpg",
-      "name": "a2",
-      "price": "asdasd",
-      "description": "asdasasd",
+      "image": "https://img.itdg.com.br/tdg/images/blog/uploads/2019/05/pizza.jpg",
+      "name": "Pizza",
+      "price": "24.43",
+      "description": "Não definido",
       "id": 2
-    },
-    {
-      "image": "https://super.abril.com.br/wp-content/uploads/2018/07/farofa-formiga-site.jpg",
-      "name": "asdsa",
-      "price": "asdasd",
-      "description": "asdasdsdasad",
-      "id": 3
     }
   ]
 }
