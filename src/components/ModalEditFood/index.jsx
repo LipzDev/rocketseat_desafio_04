@@ -1,26 +1,40 @@
-import { Component, createRef } from 'react';
 import { FiCheckSquare } from 'react-icons/fi';
 
-import { Form } from './styles';
+import React, {useState} from 'react'
 import Modal from '../Modal';
 import Input from '../Input';
+import {useFood} from '../../hooks/useFood.jsx'
+import { Form } from './styles';
 
-import React from 'react'
 
 const ModalEditFood = ({isOpen, setIsOpen}) => {
+  const {editFood, foodId} = useFood();
+
+  const [image, setImage] = useState('');
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+
+  const newFormContent = {
+    image: image,
+    name: name,
+    price: price,
+    description: description,
+  }
+
+  function handleEdit(){
+    editFood(foodId,newFormContent);
+  }
 
   return (
           <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-            <Form initialData={'editingFood'}>
+            <Form onSubmit={handleEdit}>
               <h1>Editar Prato</h1>
-              <Input name="image" placeholder="Cole o link aqui" />
-    
-              <Input name="name" placeholder="Ex: Moda Italiana" />
-              <Input name="price" placeholder="Ex: 19.90" />
-    
-              <Input name="description" placeholder="Descrição" />
-    
-              <button type="submit" data-testid="edit-food-button">
+              <Input name="image" placeholder="Cole o link aqui" onChange={(event) => setImage(event.target.value)}/>
+              <Input name="name" placeholder="Ex: Moda Italiana" onChange={(event) => setName(event.target.value)}/>
+              <Input name="price" placeholder="Ex: 19.90" onChange={(event) => setPrice(event.target.value)} />
+              <Input name="description" placeholder="Descrição" onChange={(event) => setDescription(event.target.value)} />    
+              <button type="submit" data-testid="edit-food-button" >
                 <div className="text">Editar Prato</div>
                 <div className="icon">
                   <FiCheckSquare size={24} />

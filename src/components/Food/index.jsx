@@ -1,10 +1,22 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect} from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
-
+import {useFood} from '../../hooks/useFood.jsx';
 import { Container } from './styles';
-// import api from '../../services/api';
 
-const Food = ({food, handleEditFood}) => {
+const Food = ({food, openEditFoodModal}) => {
+  const {removeFood, setFoodId} = useFood();
+
+  function handleDelete(id){
+    removeFood(id);
+  }
+
+  function handleEdit(id){
+    setFoodId(id);
+    openEditFoodModal();
+  }
+
+ 
 
   return (
     <Container available={'isAvailable'}>
@@ -23,7 +35,7 @@ const Food = ({food, handleEditFood}) => {
           <button
             type="button"
             className="icon"
-            onClick={handleEditFood}
+            onClick={() => handleEdit(food.id)}
             data-testid={`edit-food-${food.id}`}
           >
             <FiEdit3 size={20} />
@@ -32,7 +44,7 @@ const Food = ({food, handleEditFood}) => {
           <button
             type="button"
             className="icon"
-            onClick={() => alert('Insira uma função de excluir')}
+            onClick={() => handleDelete(food.id)}
             data-testid={`remove-food-${food.id}`}
           >
             <FiTrash size={20} />
@@ -83,9 +95,9 @@ export default Food
 //   }
 
 //   setEditingFood = () => {
-//     const { food, handleEditFood } = this.props;
+//     const { food, openEditFoodModal } = this.props;
 
-//     handleEditFood(food);
+//     openEditFoodModal(food);
 //   }
 
 //   render() {

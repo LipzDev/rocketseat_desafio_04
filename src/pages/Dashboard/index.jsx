@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import api from '../../services/api';
@@ -5,11 +6,12 @@ import Food from '../../components/Food';
 import ModalAddFood from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood';
 import { FoodsContainer } from './styles';
+import {useFood} from '../../hooks/useFood.jsx'
 
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editModalOpen, setEditModalOpen] = useState(false)
-  const [foods, setFoods] = useState([])
+  const {foods, setFoods} = useFood([]);
 
   const toggleModal = () => {
     setIsOpen(!isOpen)
@@ -27,6 +29,9 @@ const Dashboard = () => {
 
     loadFoods();
   }, [])
+
+  
+
 
   return (
     <>
@@ -50,7 +55,7 @@ const Dashboard = () => {
               <Food
                 key={food.id}
                 food={food}
-                handleEditFood={toggleEditModal}
+                openEditFoodModal={toggleEditModal}
               />
             ))}
         </FoodsContainer>

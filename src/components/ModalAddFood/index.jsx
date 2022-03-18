@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from 'react';
 import { FiCheckSquare } from 'react-icons/fi';
 
 import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
+import {useFood} from '../../hooks/useFood.jsx'
 
 const ModalAddFood = ({isOpen, setIsOpen}) => {
-  const [newFood, setNewFood] = useState({})
-
+  const {addFood} = useFood();
 
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
@@ -21,16 +22,8 @@ const ModalAddFood = ({isOpen, setIsOpen}) => {
     description: description,
   }
 
-  async function handleSubmit(){
-    try {
-      setNewFood(formData)
-      alert('Falta função para enviar')
-
-      // ENVIAR PARA API
-      
-    } catch (err) {
-      console.log(err);
-    }
+  function handleSubmit(){
+    addFood(formData);
   }
 
   return (
