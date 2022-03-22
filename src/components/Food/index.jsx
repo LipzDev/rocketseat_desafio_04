@@ -5,10 +5,11 @@ import {useFood} from '../../hooks/useFood.jsx';
 import { Container } from './styles';
 
 const Food = ({food, openEditFoodModal}) => {
-  const {removeFood, setSelectedFoodId} = useFood();
+  const {removeFood, setSelectedFoodId, setFoods} = useFood();
 
   function handleDelete(id){
     removeFood(id);
+    // setFoods((...prev) => prev.filter(item => console.log(item.id !== id)))
   }
 
   function handleEdit(id){

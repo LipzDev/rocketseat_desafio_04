@@ -9,33 +9,35 @@ import api from "../../services/api";
 
 const ModalEditFood = ({ isOpen, setIsOpen }) => {
   const { editFood, selectedFoodId } = useFood();
-  const [ data, setData ] = useState([]);
+  const [data, setData] = useState([]);
 
-  const [image, setImage] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
+  const [image, setImage] = useState('');
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
 
-  const newFormContent = {
-    image: image,
-    name: name,
-    price: price,
-    description: description,
+  let newFormContent = {
+    image: image || data?.image,
+    name: name || data?.name,
+    price: price || data?.price,
+    description: description || data?.description,
   };
 
-  function handleEdit() {
+  async function handleEdit() {
     editFood(selectedFoodId, newFormContent);
   }
 
   useEffect(() => {
     async function loadContent() {
-      await api.get(`/foods/${selectedFoodId}`).then(response => setData(response.data)).catch(
-      setData('Loading...')
-      )
+      await api
+        .get(`/foods/${selectedFoodId}`)
+        .then((response) => setData(response.data))
+        .catch(setData("Loading..."));
     }
 
     loadContent();
   }, [selectedFoodId]);
+
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -77,26 +79,3 @@ const ModalEditFood = ({ isOpen, setIsOpen }) => {
 };
 
 export default ModalEditFood;
-
-// class ModalEditFood extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.formRef = createRef()
-//   }
-
-//   handleSubmit = async (data) => {
-//     const { setIsOpen, handleUpdateFood } = this.props;
-
-//     handleUpdateFood(data);
-//     setIsOpen();
-//   };
-
-//   render() {
-//     const { isOpen, setIsOpen, editingFood } = this.props;
-
-//
-//   }
-// };
-
-// export default ModalEditFood;

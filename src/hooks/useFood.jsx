@@ -17,7 +17,7 @@ export const FoodProvider = ({children}) => {
   }
 
   async function removeFood(id){
-    try{
+    try{      
       await api.delete(`/foods/${id}`);
 
     } catch(err) {
@@ -27,7 +27,12 @@ export const FoodProvider = ({children}) => {
 
   async function editFood(id, content){
     try{
-      await api.put(`/foods/${id}`, content);
+
+
+        
+        await api.put(`/foods/${id}`, content);
+
+       
 
     } catch(err) {
       console.log(err);
