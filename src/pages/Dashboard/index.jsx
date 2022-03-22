@@ -11,7 +11,7 @@ import { FoodsContainer } from "./styles";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const { foods, setFoods } = useFood([]);
+  const { foods, setFoods } = useFood();
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -30,22 +30,17 @@ const Dashboard = () => {
     loadFoods();
   }, []);
 
+  // TODO: CORRIGIR PROBLEMA DO LOOP INFINITO!
+
   return (
     <>
       <Header openModal={toggleModal} />
-
       <ModalAddFood isOpen={isOpen} setIsOpen={toggleModal} />
-
       <ModalEditFood isOpen={editModalOpen} setIsOpen={toggleEditModal} />
-
       <FoodsContainer data-testid="foods-list">
         {foods &&
           foods.map((food, index) => (
-            <Food
-              key={index}
-              food={food}
-              openEditFoodModal={toggleEditModal}
-            />
+            <Food key={index} food={food} openEditFoodModal={toggleEditModal} />
           ))}
       </FoodsContainer>
     </>

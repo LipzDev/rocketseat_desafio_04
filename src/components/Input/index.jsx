@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { Container } from "./styles";
 
 const Input = ({ initialValue, ...rest }) => {

@@ -12,17 +12,17 @@ export const Container = styled.div`
     transition: 0.3s opacity;
     text-align: center;
 
-    ${props =>
-    !props.available &&
+    ${({available}) =>
     css`
-        opacity: 0.3;
-      `};
+        opacity: ${ available ? '1' : '0.3'};
+      
 
     img {
       pointer-events: none;
       user-select: none;
       max-width: 100%;
     }
+    `};
   }
 
   section.body {

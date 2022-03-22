@@ -19,7 +19,6 @@ export const FoodProvider = ({children}) => {
   async function removeFood(id){
     try{      
       await api.delete(`/foods/${id}`);
-
     } catch(err) {
       console.log(err);
     }
@@ -27,20 +26,32 @@ export const FoodProvider = ({children}) => {
 
   async function editFood(id, content){
     try{
-
-
-        
         await api.put(`/foods/${id}`, content);
+    } catch(err) {
+      console.log(err);
+    }
+  }
 
-       
+  async function isAvailableInStock(food){
+    try{
+      const response = await api.get(`/foods/${food.id}`);
 
+      const newObject = {
+        ...response.data,
+        isAvailable: !food.isAvailable
+      }
+
+      console.log(newObject)
+      
+      await api.put(`/foods/${food.id}`, newObject);
+      
     } catch(err) {
       console.log(err);
     }
   }
 
   return (
-    <FoodContext.Provider value={{addFood, editFood, removeFood, setFoods, foods, setSelectedFoodId, selectedFoodId}}>
+    <FoodContext.Provider value={{addFood, editFood, removeFood, isAvailableInStock, setFoods, foods, setSelectedFoodId, selectedFoodId}}>
       {children}
     </FoodContext.Provider>
   )
