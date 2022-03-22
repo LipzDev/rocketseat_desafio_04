@@ -1,16 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState} from 'react';
+import React from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 import {useFood} from '../../hooks/useFood.jsx';
 import { Container } from './styles';
 
 const Food = ({food, openEditFoodModal}) => {
   const {removeFood, setSelectedFoodId, isAvailableInStock} = useFood();
-  // const [isAvailable, setIsAvailable] = useState(true);
 
   function handleDelete(id){
     removeFood(id);
-    // setFoods((...prev) => prev.filter(item => console.log(item.id !== id)))
   }
 
   function handleEdit(id){
@@ -19,7 +17,6 @@ const Food = ({food, openEditFoodModal}) => {
   }
 
   function handleChange(food){
-    // setIsAvailable(!isAvailable);
     isAvailableInStock(food);
   }
 

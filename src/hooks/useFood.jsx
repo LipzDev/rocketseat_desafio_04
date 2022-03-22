@@ -10,7 +10,6 @@ export const FoodProvider = ({children}) => {
   async function addFood(formContent){
     try{
       await api.post(`/foods/`, formContent);
-
     } catch(err) {
       console.log(err);
     }
@@ -41,8 +40,6 @@ export const FoodProvider = ({children}) => {
         isAvailable: !food.isAvailable
       }
 
-      console.log(newObject)
-      
       await api.put(`/foods/${food.id}`, newObject);
       
     } catch(err) {

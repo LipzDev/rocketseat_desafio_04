@@ -1,3 +1,12 @@
 {
-  "foods": []
+  "foods": [
+    {
+      "image": "http://www.restaurantefrutosdaterra.com.br/wp-content/uploads/2017/06/Comida-italiana-e%CC%81-rica-em-sabor-e-na%CC%83o-atrapalha-a-sua-dieta-restaurante-frutos-da-terra.jpg",
+      "name": "Filipe",
+      "price": "12.22",
+      "description": "asdassa",
+      "id": 1,
+      "isAvailable": true
+    }
+  ]
 }
