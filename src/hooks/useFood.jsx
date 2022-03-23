@@ -18,6 +18,8 @@ export const FoodProvider = ({children}) => {
   async function removeFood(id){
     try{      
       await api.delete(`/foods/${id}`);
+      setFoods(foods.filter(food => food.id !== id));
+
     } catch(err) {
       console.log(err);
     }
@@ -26,6 +28,18 @@ export const FoodProvider = ({children}) => {
   async function editFood(id, content){
     try{
         await api.put(`/foods/${id}`, content);
+        setFoods(foods.filter(food => {
+          if(food.id === id){
+            food.image = content.image;
+            food.name = content.name;
+            food.description = content.description;
+            food.price = content.price;
+            food.isAvailable = content.isAvailable;
+          }
+          return food;
+        }          
+      ));
+        
     } catch(err) {
       console.log(err);
     }

@@ -11,7 +11,7 @@ import { FoodsContainer } from "./styles";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const { foods, setFoods } = useFood();
+  const { foods, setFoods, refreshId } = useFood();
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -29,8 +29,6 @@ const Dashboard = () => {
 
     loadFoods();
   }, []);
-
-  // TODO: CORRIGIR PROBLEMA DO LOOP INFINITO!
 
   return (
     <>

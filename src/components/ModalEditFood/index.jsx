@@ -32,9 +32,8 @@ const ModalEditFood = ({ isOpen, setIsOpen }) => {
       await api
         .get(`/foods/${selectedFoodId}`)
         .then((response) => setData(response.data))
-        .catch(setData("Loading..."));
+        .catch(setData(""));
     }
-
     loadContent();
   }, [selectedFoodId]);
 
