@@ -24,6 +24,16 @@ const ModalAddFood = ({isOpen, setIsOpen}) => {
 
   function handleSubmit(){
     addFood(formData);
+
+    // Reset form
+    setImage('');
+    setName('');
+    setPrice('');
+    setDescription('');     
+
+    if(isOpen){
+      setIsOpen(false);
+    }
   }
 
   return (

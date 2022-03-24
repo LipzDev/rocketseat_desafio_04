@@ -21,10 +21,14 @@ const ModalEditFood = ({ isOpen, setIsOpen }) => {
     name: name || data?.name,
     price: price || data?.price,
     description: description || data?.description,
-  };
+  }
+
 
   async function handleEdit() {
     editFood(selectedFoodId, newFormContent);
+    if (isOpen) {
+      setIsOpen(false);
+    }
   }
 
   useEffect(() => {
@@ -34,8 +38,12 @@ const ModalEditFood = ({ isOpen, setIsOpen }) => {
         .then((response) => setData(response.data))
         .catch(setData(""));
     }
-    loadContent();
-  }, [selectedFoodId]);
+
+    if (isOpen) {
+      loadContent();
+    }
+
+  }, [isOpen, selectedFoodId]);
 
 
   return (

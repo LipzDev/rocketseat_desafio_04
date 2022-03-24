@@ -11,7 +11,7 @@ import { FoodsContainer } from "./styles";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const { foods, setFoods, refreshId } = useFood();
+  const { foods, setFoods } = useFood();
 
   const toggleModal = () => {
     setIsOpen(!isOpen);

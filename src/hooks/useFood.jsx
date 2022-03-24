@@ -9,7 +9,16 @@ export const FoodProvider = ({children}) => {
 
   async function addFood(formContent){
     try{
-      await api.post(`/foods/`, formContent);
+      await api.post(`/foods/`, formContent);   
+      
+      let newObj = {
+        ...formContent,
+        id: foods.length + 1
+      }
+
+      setFoods(foods.concat(newObj));   
+      console.log(foods);
+
     } catch(err) {
       console.log(err);
     }
