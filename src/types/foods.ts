@@ -1,14 +1,14 @@
 export type Foods = {
   id?: number;
   name?: string;
-  price?: number;
+  price?: string;
   image?: string;
   description?: string;
   isAvailable?: boolean;
 }
 
 export type FoodsFunctions = {
-  addFood?: (formContent: Foods) => void;
+  addFood: (formContent: Foods) => void;
   editFood?: (id: Foods, content: Foods) => void;
   removeFood?: (id: Foods, content: Foods) => void;
   setSelectedFoodId?: (id: number) => void;

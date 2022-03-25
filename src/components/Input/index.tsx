@@ -1,7 +1,8 @@
 import { Container } from "./styles";
 
 type InputProps = {
-  initialValue: string;
+  initialValue?: string;
+  [x:string]: any;
 }
 
 const Input = ({ initialValue, ...rest }: InputProps) => {
