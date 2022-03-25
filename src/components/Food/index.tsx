@@ -1,14 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 import {useFood} from '../../hooks/useFood';
-import api from '../../services/api.ts';
+import api from '../../services/api';
+import { Foods } from '../../types/foods';
 import { Container } from './styles';
 
-const Food = ({food, openEditFoodModal}) => {
+type FoodProps = {
+  food: Foods;
+  openEditFoodModal: () => void;
+  available: boolean;
+}
+
+const Food = ({food, openEditFoodModal}: FoodProps) => {
   const {removeFood, setSelectedFoodId, setFoods, foods} = useFood();
 
-  async function isAvailableInStock(food){
+  async function isAvailableInStock(food: Foods) {
     try{
       const response = await api.get(`/foods/${food.id}`);
 
@@ -31,16 +37,16 @@ const Food = ({food, openEditFoodModal}) => {
     }
   }
 
-  function handleDelete(id){
+  function handleDelete(id: number){
     removeFood(id);
   }
 
-  function handleEdit(id){
+  function handleEdit(id: number){
     setSelectedFoodId(id);
     openEditFoodModal();
   }
 
-  function handleChange(food){
+  function handleChange(food: Foods){
     isAvailableInStock(food);
   }
 
@@ -61,7 +67,7 @@ const Food = ({food, openEditFoodModal}) => {
           <button
             type="button"
             className="icon"
-            onClick={() => handleEdit(food.id)}
+            onClick={() => handleEdit(food.id as number)}
             data-testid={`edit-food-${food.id}`}
           >
             <FiEdit3 size={20} />
@@ -70,7 +76,7 @@ const Food = ({food, openEditFoodModal}) => {
           <button
             type="button"
             className="icon"
-            onClick={() => handleDelete(food.id)}
+            onClick={() => handleDelete(food.id as number)}
             data-testid={`remove-food-${food.id}`}
           >
             <FiTrash size={20} />

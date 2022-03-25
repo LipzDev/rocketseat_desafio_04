@@ -6,6 +6,7 @@ import Modal from '../Modal';
 import Input from '../Input';
 import {useFood} from '../../hooks/useFood'
 import { Form } from './styles';
+import { Foods } from '../../types/foods';
 
 type ModalAddFoodProps = {
   isOpen: boolean;
@@ -28,7 +29,7 @@ const ModalAddFood = ({ isOpen, setIsOpen }: ModalAddFoodProps) => {
   }
 
   function handleSubmit(){
-    addFood(formData);
+    addFood(formData as Foods);
 
     // Reset form
     setImage('');

@@ -11,9 +11,9 @@ export type Foods = {
 export type FoodsFunctions = {
   addFood: (formContent: Foods) => void;
   editFood: any;
-  removeFood?: (id: Foods, content: Foods) => void;
-  setSelectedFoodId?: (id: number) => void;
-  selectedFoodId?: number;
+  removeFood: any;
+  setSelectedFoodId: (id: number) => void;
+  selectedFoodId: number;
   setFoods: ((content: Foods[]) => void);
-  foods?: Foods[]; 
+  foods: Foods[]; 
 }

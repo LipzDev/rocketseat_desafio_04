@@ -39,7 +39,7 @@ const Dashboard = () => {
       <FoodsContainer data-testid="foods-list">
         {foods &&
           foods.map((food: Foods, index: number) => (
-            <Food key={index} food={food} openEditFoodModal={toggleEditModal} />
+            <Food key={index} food={food} openEditFoodModal={toggleEditModal} available/>
           ))}
       </FoodsContainer>
     </>
