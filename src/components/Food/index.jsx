@@ -2,7 +2,7 @@
 import React from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 import {useFood} from '../../hooks/useFood';
-import api from '../../services/api.js';
+import api from '../../services/api.ts';
 import { Container } from './styles';
 
 const Food = ({food, openEditFoodModal}) => {
