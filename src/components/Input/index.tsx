@@ -1,6 +1,11 @@
 import { Container } from "./styles";
 
-const Input = ({ initialValue, ...rest }) => {
+type InputProps = {
+  initialValue?: string;
+  [x:string]: any;
+}
+
+const Input = ({ initialValue, ...rest }: InputProps) => {
 
   return (
     <Container>

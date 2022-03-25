@@ -1,13 +1,18 @@
 import React, {createContext, useContext, useState} from 'react'
 import api from '../services/api';
+import { Foods, FoodsFunctions } from "../types/foods";
 
-const FoodContext = createContext({});
+const FoodContext = createContext({} as FoodsFunctions);
 
-export const FoodProvider = ({children}) => {
-  const [foods, setFoods] = useState([]);
+type FoodProviderProps = {
+  children: React.ReactNode;
+}
+
+export const FoodProvider = ({children}: FoodProviderProps) => {
+  const [foods, setFoods] = useState<Foods[]>([]);
   const [selectedFoodId, setSelectedFoodId] = useState(1);
 
-  async function addFood(formContent){
+  async function addFood(formContent: Foods){
     try{
       await api.post(`/foods/`, formContent);   
       
@@ -23,7 +28,7 @@ export const FoodProvider = ({children}) => {
     }
   }
 
-  async function removeFood(id){
+  async function removeFood(id: Foods){
     try{      
       await api.delete(`/foods/${id}`);
       setFoods(foods.filter(food => food.id !== id));
@@ -33,7 +38,7 @@ export const FoodProvider = ({children}) => {
     }
   }
 
-  async function editFood(id, content){
+  async function editFood(id: Foods, content: Foods){
     try{
         await api.put(`/foods/${id}`, content);
         setFoods(foods.filter(food => {

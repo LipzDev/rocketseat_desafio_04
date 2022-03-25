@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-const Modal = ({isOpen, setIsOpen, children}) => {
+type ModalProps = {
+  isOpen: boolean;
+  setIsOpen: () => void;
+  children: React.ReactNode;
+}
+
+const Modal = ({isOpen, setIsOpen, children}: ModalProps) => {
 
   return (
       <ReactModal
