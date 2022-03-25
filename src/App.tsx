@@ -1,11 +1,11 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import { FoodProvider } from '../src/hooks/useFood.tsx'
+import { FoodProvider } from './hooks/useFood'
 
 import Routes from './routes';
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from './styles/global';
-import theme from "../src/styles/theme";
+import theme from "./styles/theme";
 
 const App = () => (
   <ThemeProvider theme={theme}>
