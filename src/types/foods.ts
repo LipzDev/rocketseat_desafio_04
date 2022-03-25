@@ -5,11 +5,12 @@ export type Foods = {
   image?: string;
   description?: string;
   isAvailable?: boolean;
+  selectedFoodId?: number;
 }
 
 export type FoodsFunctions = {
   addFood: (formContent: Foods) => void;
-  editFood?: (id: Foods, content: Foods) => void;
+  editFood: any;
   removeFood?: (id: Foods, content: Foods) => void;
   setSelectedFoodId?: (id: number) => void;
   selectedFoodId?: number;

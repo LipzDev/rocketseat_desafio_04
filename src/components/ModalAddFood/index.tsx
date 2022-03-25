@@ -5,7 +5,6 @@ import { FiCheckSquare } from 'react-icons/fi';
 import Modal from '../Modal';
 import Input from '../Input';
 import {useFood} from '../../hooks/useFood'
-import { FoodsFunctions } from '../../types/foods';
 import { Form } from './styles';
 
 type ModalAddFoodProps = {

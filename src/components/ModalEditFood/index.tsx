@@ -6,15 +6,23 @@ import Input from "../Input";
 import { useFood } from "../../hooks/useFood";
 import { Form } from "./styles";
 import api from "../../services/api";
+import { Foods } from "../../types/foods";
 
-const ModalEditFood = ({ isOpen, setIsOpen }) => {
+type ModalEditFoodProps = {
+  isOpen: boolean;
+  setIsOpen: any;
+  editFood?: (id: any, data: Foods) => void;
+}
+
+const ModalEditFood = ({ isOpen, setIsOpen }: ModalEditFoodProps) => {
   const { editFood, selectedFoodId } = useFood();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Foods>([] as Foods);
 
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
+
 
   let newFormContent = {
     image: image || data?.image,
@@ -25,7 +33,8 @@ const ModalEditFood = ({ isOpen, setIsOpen }) => {
   }
 
   async function handleEdit() {
-    editFood(selectedFoodId, newFormContent);
+    editFood(selectedFoodId as any, newFormContent);
+
     if (isOpen) {
       setIsOpen(false);
     }
@@ -36,7 +45,7 @@ const ModalEditFood = ({ isOpen, setIsOpen }) => {
       await api
         .get(`/foods/${selectedFoodId}`)
         .then((response) => setData(response.data))
-        .catch(setData(""));
+        .catch((err) => console.log(err));
     }
 
     if (isOpen) {
@@ -53,25 +62,25 @@ const ModalEditFood = ({ isOpen, setIsOpen }) => {
         <Input
           name="image"
           placeholder="Cole o link aqui"
-          onChange={(event) => setImage(event.target.value)}
+          onChange={(event: any) => setImage(event.target.value)}
           initialValue={data?.image}
         />
         <Input
           name="name"
           placeholder="Ex: Moda Italiana"
-          onChange={(event) => setName(event.target.value)}
+          onChange={(event: any) => setName(event.target.value)}
           initialValue={data?.name}
         />
         <Input
           name="price"
           placeholder="Ex: 19.90"
-          onChange={(event) => setPrice(event.target.value)}
+          onChange={(event: any) => setPrice(event.target.value)}
           initialValue={data?.price}
         />
         <Input
           name="description"
           placeholder="Descrição"
-          onChange={(event) => setDescription(event.target.value)}
+          onChange={(event: any) => setDescription(event.target.value)}
           initialValue={data?.description}
         />
         <button type="submit" data-testid="edit-food-button">
