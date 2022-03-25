@@ -17,7 +17,6 @@ export const FoodProvider = ({children}) => {
       }
 
       setFoods(foods.concat(newObj));   
-      console.log(foods);
 
     } catch(err) {
       console.log(err);
@@ -54,24 +53,8 @@ export const FoodProvider = ({children}) => {
     }
   }
 
-  async function isAvailableInStock(food){
-    try{
-      const response = await api.get(`/foods/${food.id}`);
-
-      const newObject = {
-        ...response.data,
-        isAvailable: !food.isAvailable
-      }
-
-      await api.put(`/foods/${food.id}`, newObject);
-      
-    } catch(err) {
-      console.log(err);
-    }
-  }
-
   return (
-    <FoodContext.Provider value={{addFood, editFood, removeFood, isAvailableInStock, setFoods, foods, setSelectedFoodId, selectedFoodId}}>
+    <FoodContext.Provider value={{addFood, editFood, removeFood, setFoods, foods, setSelectedFoodId, selectedFoodId}}>
       {children}
     </FoodContext.Provider>
   )

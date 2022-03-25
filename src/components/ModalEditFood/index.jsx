@@ -21,8 +21,8 @@ const ModalEditFood = ({ isOpen, setIsOpen }) => {
     name: name || data?.name,
     price: price || data?.price,
     description: description || data?.description,
+    isAvailable: data?.isAvailable
   }
-
 
   async function handleEdit() {
     editFood(selectedFoodId, newFormContent);

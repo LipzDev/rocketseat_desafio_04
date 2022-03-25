@@ -1,18 +1,3 @@
 {
-  "foods": [
-    {
-      "image": "http://www.restaurantefrutosdaterra.com.br/wp-content/uploads/2017/06/Comida-italiana-e%CC%81-rica-em-sabor-e-na%CC%83o-atrapalha-a-sua-dieta-restaurante-frutos-da-terra.jpg",
-      "name": "Prato de macarrao",
-      "price": "39,00",
-      "description": "Um delicioso prato de macarrone!",
-      "id": 1
-    },
-    {
-      "image": "https://img.itdg.com.br/tdg/images/blog/uploads/2019/05/pizza.jpg",
-      "name": "Pizza",
-      "price": "48,00",
-      "description": "La bella",
-      "id": 2
-    }
-  ]
+  "foods": []
 }

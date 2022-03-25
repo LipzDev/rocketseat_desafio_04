@@ -2,10 +2,34 @@
 import React from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 import {useFood} from '../../hooks/useFood.jsx';
+import api from '../../services/api.js';
 import { Container } from './styles';
 
 const Food = ({food, openEditFoodModal}) => {
-  const {removeFood, setSelectedFoodId, isAvailableInStock} = useFood();
+  const {removeFood, setSelectedFoodId, setFoods, foods} = useFood();
+
+  async function isAvailableInStock(food){
+    try{
+      const response = await api.get(`/foods/${food.id}`);
+
+      const newObject = {
+        ...response.data,
+        isAvailable: !food.isAvailable
+      }
+
+      await api.put(`/foods/${food.id}`, newObject);
+
+      setFoods(foods.filter(food => {
+        if(food.id === newObject.id){
+          food.isAvailable = !food.isAvailable;
+        }
+        return food;
+      }));
+      
+    } catch(err) {
+      console.log(err);
+    }
+  }
 
   function handleDelete(id){
     removeFood(id);
