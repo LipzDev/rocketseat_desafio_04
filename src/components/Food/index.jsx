@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
-import {useFood} from '../../hooks/useFood.jsx';
+import {useFood} from '../../hooks/useFood';
 import api from '../../services/api.js';
 import { Container } from './styles';
 

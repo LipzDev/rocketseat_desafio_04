@@ -3,7 +3,7 @@ import { FiCheckSquare } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 import Modal from "../Modal";
 import Input from "../Input";
-import { useFood } from "../../hooks/useFood.jsx";
+import { useFood } from "../../hooks/useFood";
 import { Form } from "./styles";
 import api from "../../services/api";
 

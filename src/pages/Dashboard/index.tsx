@@ -5,7 +5,8 @@ import api from "../../services/api";
 import Food from "../../components/Food";
 import ModalAddFood from "../../components/ModalAddFood";
 import ModalEditFood from "../../components/ModalEditFood";
-import { useFood } from "../../hooks/useFood.jsx";
+import { useFood } from "../../hooks/useFood";
+import { Foods } from "../../types/foods";
 import { FoodsContainer } from "./styles";
 
 const Dashboard = () => {
@@ -37,7 +38,7 @@ const Dashboard = () => {
       <ModalEditFood isOpen={editModalOpen} setIsOpen={toggleEditModal} />
       <FoodsContainer data-testid="foods-list">
         {foods &&
-          foods.map((food, index) => (
+          foods.map((food: Foods, index: number) => (
             <Food key={index} food={food} openEditFoodModal={toggleEditModal} />
           ))}
       </FoodsContainer>
